@@ -1,7 +1,7 @@
 #
 # STEP 1: Prepare environment
 #
-FROM golang:1.24 AS preparer
+FROM golang:1.24@sha256:62c7ec2059c165fee0750d3ee51429d6c167749f70dd13b7dfea2c85dfd941de AS preparer
 
 RUN apt-get update                                                        && \
   DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
@@ -45,7 +45,7 @@ RUN --mount=type=cache,target=/root/.cache/go-build \
 ##
 # STEP 3: Prepare image to run the binary
 #
-FROM golang:1.24 AS runner
+FROM golang:1.24@sha256:62c7ec2059c165fee0750d3ee51429d6c167749f70dd13b7dfea2c85dfd941de AS runner
 
 RUN apt-get update     && \
   DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
